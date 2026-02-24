@@ -19,6 +19,27 @@ export default class Chef {
   }
   sendOrder() {
     this.container.innerHTML = '';
+
+    this.createHeader();
+    this.createListItem();
+    this.createFooter();
+  }
+  createHeader() {
+    let title = document.createElement('h2');
+    title.innerText = `Voici le résumé de votre commande :`;
+    this.container.appendChild(title);
+  }
+  createListItem() {
+    for (let i = 0; i < this.menu.length; i++) {
+      let type = this.menu[i].selectedType;
+      if (type != null) {
+        let p = document.createElement('p');
+        p.textContent = `Poutine #${i + 1} - ${type}`;
+        this.container.appendChild(p);
+      }
+    }
+  }
+  createFooter() {
     let poutineCount = 0;
     for (let i = 0; i < this.menu.length; i++) {
       let type = this.menu[i].selectedType;
